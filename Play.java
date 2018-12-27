@@ -19,7 +19,7 @@ public class Play extends BasicGameState
 	// Draw stuff on the screen. graphics objects draws the stuff.
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
 	{
-		
+		g.drawString("This is the play state", 100, 100);
 	}
 	
 	// Update graphics for animation 

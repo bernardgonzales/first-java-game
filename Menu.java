@@ -1,14 +1,12 @@
 package javagame;
-// test 12/26/2019
+
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 public class Menu extends BasicGameState
 {
-
-	Image picture; 
-	int pictureX = 250;
-	int pictureY = 300; 
+	public String mouse = "No mouse input";
 	
 	// Constructor
 	public Menu(int state)
@@ -19,34 +17,31 @@ public class Menu extends BasicGameState
 	//
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException
 	{
-		picture = new Image("res/Dinosaur-PNG-HD.png");
 	}
 	
 	// Draw stuff on the screen. graphics objects draws the stuff.
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException
 	{
-		g.drawImage(picture, pictureX, pictureY);
+		g.drawString("This is the menu state", 80, 70);
+		g.fillOval(75,100,100,100);
+		g.drawString(mouse, 50, 50);
 	}
 	
 	// Update graphics when things change
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException
 	{
+		// Stores user's input from keyboard/mouse
 		Input input = gc.getInput();
-		if (input.isKeyDown(Input.KEY_UP))
+		int xpos = Mouse.getX();
+		int ypos = Mouse.getY();
+		
+		mouse = "Mouse position: "+ xpos + "," + ypos;
+		if((xpos>75 && xpos<175) && (ypos>700 && ypos<800))
 		{
-			pictureY -= 4;
-		}
-		if (input.isKeyDown(Input.KEY_DOWN))
-		{
-			pictureY += 4;
-		}
-		if(input.isKeyDown(Input.KEY_LEFT))
-		{
-			pictureX -= 4;
-		}
-		if(input.isKeyDown(Input.KEY_RIGHT))
-		{
-			pictureX += 4;
+			if(input.isMouseButtonDown(0))
+			{
+				sbg.enterState(1);
+			}
 		}
 	}
 	
